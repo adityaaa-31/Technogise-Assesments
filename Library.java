@@ -2,6 +2,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+class User {
+    private String username;
+    private int noOfBooks;
+
+    public User(String username) {
+        this.username = username;
+        this.noOfBooks = 0;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public int getNoOfBooks() {
+        return noOfBooks;
+    }
+
+}
+
 class Book {
     private String bookName;
     private String authorName;
@@ -31,12 +50,9 @@ class Book {
 
 class Library {
 
-    // Library will have a lsit of books
     List<Book> books = new ArrayList<>();
 
-    // View the books currently present in the library
     void viewBooks() {
-        // If there are no books present, notify the user
         if (books.isEmpty()) {
             System.out.println("Library is Empty");
         }
