@@ -1,14 +1,17 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 class User {
     private String username;
     private int noOfBooks;
+    private List<Book> borrowedBooks = new ArrayList<>();
 
     public User(String username) {
         this.username = username;
         this.noOfBooks = 0;
+
     }
 
     public String getUsername() {
@@ -19,11 +22,33 @@ class User {
         return noOfBooks;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setNoOfBooks(int noOfBooks) {
+        this.noOfBooks = noOfBooks;
+    }
+
+    boolean canBorrow() {
+        if (borrowedBooks.size() < 2) {
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public void setBorrowedBooks(Book b) {
+        borrowedBooks.add(b);
+    }
+
 }
 
 class Book {
     private String bookName;
     private String authorName;
+    private int noOfCopies;
 
     public Book(String bookName, String authorName) {
         this.bookName = bookName;
@@ -38,6 +63,10 @@ class Book {
         return authorName;
     }
 
+    public int getNoOfCopies() {
+        return noOfCopies;
+    }
+
     public void setBookName(String bookName) {
         this.bookName = bookName;
     }
@@ -46,11 +75,26 @@ class Book {
         this.authorName = authorName;
     }
 
+    public void setNoOfCopies(int noOfCopies) {
+        this.noOfCopies = noOfCopies;
+    }
+
 }
 
 class Library {
 
     List<Book> books = new ArrayList<>();
+    List<User> users = new ArrayList<>();
+
+    HashMap<String, String> borrowedBooks = new HashMap<>();
+
+    void addBook(Book b) {
+        books.add(b);
+    }
+
+    void addUser(User user) {
+        users.add(user);
+    }
 
     void viewBooks() {
         if (books.isEmpty()) {
@@ -62,9 +106,16 @@ class Library {
         }
     }
 
-    // Add books to the library
-    void addBook(Book b) {
-        books.add(b);
+    void borrowBook(String bookName, User user) {
+        for (Book book : books) {
+            if (book.getBookName() == bookName && user.getNoOfBooks() < 2) {
+                user.setBorrowedBooks(book);
+                // increment the number of books borrowed
+                user.setNoOfBooks(user.getNoOfBooks() + 1);
+            } else {
+                System.out.println("Cannot Borrow book");
+            }
+        }
     }
 
 }
@@ -76,16 +127,21 @@ class LibrarySystem {
 
         Scanner sc = new Scanner(System.in);
 
+        String bookName;
+        int choice;
+
         library.addBook(new Book("Top Gear", "BBC"));
         library.addBook(new Book("Harry Potter", "JK Rowling"));
 
         // library.viewBooks();
 
+        User user_1 = new User("Aditya");
+
         System.out.println("Menu:-");
         System.out.println("1. View available books");
-        System.out.println("2. Exit Library");
+        System.out.println("2. Borrow a book");
+        System.out.println("3. Exit Library");
 
-        int choice;
         do {
             System.out.println("Enter a choice");
 
@@ -97,12 +153,19 @@ class LibrarySystem {
                     break;
 
                 case 2:
+                    System.out.println("Enter the book you want to borrow");
+                    sc.nextLine();
+                    bookName = sc.nextLine();
+                    library.borrowBook(bookName, user_1);
+
+                case 3:
                     System.out.println("Exited");
                     System.exit(1);
+
                 default:
                     break;
             }
-        } while (choice != 3);
+        } while (choice != 4);
 
         sc.close();
 
