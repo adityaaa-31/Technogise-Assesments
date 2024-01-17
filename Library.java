@@ -6,7 +6,6 @@ import java.util.Scanner;
 class User {
     private String username;
     private int noOfBooks;
-    // private List<Book> borrowedBooks = new ArrayList<>();
 
     public User(String username) {
         this.username = username;
@@ -92,6 +91,16 @@ class Library {
         for (Book book : books) {
             System.out.println(book.getBookName() + " - " + book.getAuthorName());
         }
+    }
+
+    Book searcBook(String bookName) {
+
+        for (Book book: books) {
+            if(book.getBookName().equalsIgnoreCase(bookName)) {
+                return book;
+            } 
+        }
+        return null;
     }
 
     void borrowBook(String bookName, User user) {
