@@ -115,6 +115,17 @@ class Library {
     }
 
     void borrowBook(String bookName, String username) {
+        Book book = searchBook(bookName);
+        User user = searchUser(username);
+        if (user == null || book == null) {
+            return;
+        }
+
+        if (book.getNoOfCopies() > 0 && user.getNoOfBooks() <= 2) {
+            borrowedBooks.put(username, bookName);
+        } else {
+            System.out.println("Cannot borrow book");
+        }
 
     }
 
