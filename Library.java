@@ -3,9 +3,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
+
 class User {
     private String username;
     private int noOfBooks;
+
+    List<Book> borrowedBooks = new ArrayList<>();
 
     public User(String username) {
         this.username = username;
@@ -27,6 +30,18 @@ class User {
 
     public void setNoOfBooks(int noOfBooks) {
         this.noOfBooks = noOfBooks;
+    }
+
+    boolean canBorrow() {
+        if (borrowedBooks.size() >= 2) {
+            return false;
+        }
+
+        return true;
+    }
+
+    void borrowBook(Book book) {
+        borrowedBooks.add(book);
     }
 
 }
@@ -66,14 +81,20 @@ class Book {
         this.noOfCopies = noOfCopies;
     }
 
+    boolean isBookAvailable() {
+        if (this.getNoOfCopies() == 0) {
+            return false;
+        }
+
+        return true;
+    }
+
 }
 
 class Library {
 
     List<Book> books = new ArrayList<>();
     List<User> users = new ArrayList<>();
-
-    HashMap<String, String> borrowedBooks = new HashMap<>();
 
     void addBook(Book b) {
         books.add(b);
@@ -94,7 +115,7 @@ class Library {
         }
     }
 
-    Book searchBook(String bookName) {
+    Book getBook(String bookName) {
 
         for (Book book : books) {
             if (book.getBookName().equals(bookName)) {
@@ -104,7 +125,7 @@ class Library {
         return null;
     }
 
-    User searchUser(String userName) {
+    User getUser(String userName) {
 
         for (User user : users) {
             if (user.getUsername().equals(userName)) {
@@ -112,23 +133,6 @@ class Library {
             }
         }
         return null;
-    }
-
-    void borrowBook(String bookName, String username) {
-        Book book = searchBook(bookName);
-        User user = searchUser(username);
-        if (user == null || book == null) {
-            return;
-        }
-
-        if (book.getNoOfCopies() > 0 && user.getNoOfBooks() <= 2) {
-            borrowedBooks.put(username, bookName);
-            book.setNoOfCopies(book.getNoOfCopies() - 1);
-            user.setNoOfBooks(user.getNoOfBooks() + 1);
-        } else {
-            System.out.println("Cannot borrow book");
-        }
-
     }
 
 }
