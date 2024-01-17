@@ -3,7 +3,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-
 class User {
     private String username;
     private int noOfBooks;
@@ -133,6 +132,27 @@ class Library {
             }
         }
         return null;
+    }
+
+    boolean canIssueBook(String username, String bookname) {
+        User user = getUser(username);
+        Book book = getBook(bookname);
+
+        if (book == null || user == null)
+            return false;
+
+        if (user.canBorrow() && book.isBookAvailable()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    boolean issueBook(String username, String bookName) {
+        if (canIssueBook(username, bookName)) {
+            return true;
+        }
+        return false;
     }
 
 }
