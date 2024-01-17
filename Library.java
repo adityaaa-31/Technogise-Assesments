@@ -39,8 +39,15 @@ class User {
         return true;
     }
 
-    void borrowBook(Book book) {
-        borrowedBooks.add(book);
+    boolean borrowBook(Library library, String bookname) {
+        Book book = library.issueBook(username, bookname);
+
+        if (book != null) {
+            borrowedBooks.add(book);
+            return true;
+        }
+
+        return false;
     }
 
 }
@@ -104,7 +111,7 @@ class Library {
     }
 
     void viewBooks() {
-        System.out.println(borrowedBooks);
+
         if (books.isEmpty()) {
             System.out.println("Library is Empty");
         }
@@ -134,20 +141,18 @@ class Library {
         return null;
     }
 
-
-
-    boolean issueBook(String username, String bookName) {
+    Book issueBook(String username, String bookname) {
         User user = getUser(username);
         Book book = getBook(bookname);
 
         if (book == null || user == null)
-            return false;
+            return null;
 
         if (user.canBorrow() && book.isBookAvailable()) {
-            return true;
+            return book;
         }
 
-        return false;
+        return null;
     }
 
 }
@@ -171,7 +176,7 @@ class LibrarySystem {
         System.out.println("Menu:-");
         System.out.println("1. View available books");
         System.out.println("2. Borrow a book");
-        System.out.println("3. Exit Library");
+        System.out.println("4. View Your Books");
 
         do {
             System.out.println("Enter a choice");
@@ -191,7 +196,13 @@ class LibrarySystem {
                     System.out.println("Enter your username");
                     username = sc.nextLine();
 
-                    library.borrowBook(bookName, username);
+                    User user = library.getUser(username);
+
+                    if (user.borrowBook(library, bookName)) {
+                        System.out.println("Book Borrowed");
+                    } else {
+                        System.out.println("Cannot Borrow Book");
+                    }
 
                     break;
 
