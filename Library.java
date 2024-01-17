@@ -84,6 +84,7 @@ class Library {
     }
 
     void viewBooks() {
+        System.out.println(borrowedBooks);
         if (books.isEmpty()) {
             System.out.println("Library is Empty");
         }
@@ -93,29 +94,28 @@ class Library {
         }
     }
 
-    Book searcBook(String bookName) {
+    Book searchBook(String bookName) {
 
-        for (Book book: books) {
-            if(book.getBookName().equalsIgnoreCase(bookName)) {
+        for (Book book : books) {
+            if (book.getBookName().equals(bookName)) {
                 return book;
-            } 
+            }
         }
         return null;
     }
 
-    void borrowBook(String bookName, User user) {
-        for (Book book : books) {
-            if (book.getBookName() == bookName && user.getNoOfBooks() <= 2) {
+    User searchUser(String userName) {
 
-                borrowedBooks.put(user.getUsername(), bookName);
-
-                user.setNoOfBooks(user.getNoOfBooks() + 1);
-                book.setNoOfCopies(book.getNoOfCopies() - 1);
-
-            } else {
-                System.out.println("Cannot Borrow book");
+        for (User user : users) {
+            if (user.getUsername().equals(userName)) {
+                return user;
             }
         }
+        return null;
+    }
+
+    void borrowBook(String bookName, String username) {
+
     }
 
 }
@@ -128,12 +128,13 @@ class LibrarySystem {
         Scanner sc = new Scanner(System.in);
 
         String bookName;
+        String username;
         int choice;
 
         library.addBook(new Book("Top Gear", "BBC", 3));
         library.addBook(new Book("Harry Potter", "JK Rowling", 4));
 
-        User user_1 = new User("Aditya");
+        library.addUser(new User("Aditya"));
 
         System.out.println("Menu:-");
         System.out.println("1. View available books");
@@ -154,11 +155,18 @@ class LibrarySystem {
                     System.out.println("Enter the book you want to borrow");
                     sc.nextLine();
                     bookName = sc.nextLine();
-                    library.borrowBook(bookName, user_1);
+
+                    System.out.println("Enter your username");
+                    username = sc.nextLine();
+
+                    library.borrowBook(bookName, username);
+
+                    break;
 
                 case 3:
                     System.out.println("Exited");
                     System.exit(1);
+                    break;
 
                 default:
                     break;
