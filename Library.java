@@ -123,6 +123,8 @@ class Library {
 
         if (book.getNoOfCopies() > 0 && user.getNoOfBooks() <= 2) {
             borrowedBooks.put(username, bookName);
+            book.setNoOfCopies(book.getNoOfCopies() - 1);
+            user.setNoOfBooks(user.getNoOfBooks() + 1);
         } else {
             System.out.println("Cannot borrow book");
         }
