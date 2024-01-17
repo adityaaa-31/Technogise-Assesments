@@ -50,6 +50,10 @@ class User {
         return false;
     }
 
+    List<Book> getUserBooks() {
+        return borrowedBooks;
+    }
+
 }
 
 class Book {
@@ -155,6 +159,17 @@ class Library {
         return null;
     }
 
+    void showUserBooks(String username) {
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                for(Book book: user.getUserBooks()) {
+                    System.out.println("Books Borrowed " + book.getBookName());
+                }
+            }
+
+        }
+    }
+
 }
 
 class LibrarySystem {
@@ -176,7 +191,7 @@ class LibrarySystem {
         System.out.println("Menu:-");
         System.out.println("1. View available books");
         System.out.println("2. Borrow a book");
-        System.out.println("4. View Your Books");
+        System.out.println("3. View Your Books");
 
         do {
             System.out.println("Enter a choice");
@@ -207,9 +222,10 @@ class LibrarySystem {
                     break;
 
                 case 3:
-                    System.out.println("Exited");
-                    System.exit(1);
-                    break;
+                    System.out.println("Enter your name");
+                    sc.nextLine();
+                    username = sc.nextLine();
+                    library.showUserBooks(username);
 
                 default:
                     break;
