@@ -6,7 +6,7 @@ import java.util.Scanner;
 class User {
     private String username;
     private int noOfBooks;
-    private List<Book> borrowedBooks = new ArrayList<>();
+    // private List<Book> borrowedBooks = new ArrayList<>();
 
     public User(String username) {
         this.username = username;
@@ -28,19 +28,6 @@ class User {
 
     public void setNoOfBooks(int noOfBooks) {
         this.noOfBooks = noOfBooks;
-    }
-
-    boolean canBorrow() {
-        if (borrowedBooks.size() < 2) {
-            return true;
-        }
-
-        return false;
-
-    }
-
-    public void setBorrowedBooks(Book b) {
-        borrowedBooks.add(b);
     }
 
 }
@@ -109,7 +96,7 @@ class Library {
     void borrowBook(String bookName, User user) {
         for (Book book : books) {
             if (book.getBookName() == bookName && user.getNoOfBooks() < 2) {
-                user.setBorrowedBooks(book);
+                borrowedBooks.put(user.getUsername(), bookName);
                 // increment the number of books borrowed
                 user.setNoOfBooks(user.getNoOfBooks() + 1);
             } else {
