@@ -134,7 +134,9 @@ class Library {
         return null;
     }
 
-    boolean canIssueBook(String username, String bookname) {
+
+
+    boolean issueBook(String username, String bookName) {
         User user = getUser(username);
         Book book = getBook(bookname);
 
@@ -145,13 +147,6 @@ class Library {
             return true;
         }
 
-        return false;
-    }
-
-    boolean issueBook(String username, String bookName) {
-        if (canIssueBook(username, bookName)) {
-            return true;
-        }
         return false;
     }
 
