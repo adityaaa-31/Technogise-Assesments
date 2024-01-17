@@ -37,9 +37,10 @@ class Book {
     private String authorName;
     private int noOfCopies;
 
-    public Book(String bookName, String authorName) {
+    public Book(String bookName, String authorName, int noOfCopies) {
         this.bookName = bookName;
         this.authorName = authorName;
+        this.noOfCopies = noOfCopies;
     }
 
     public String getBookName() {
@@ -95,10 +96,13 @@ class Library {
 
     void borrowBook(String bookName, User user) {
         for (Book book : books) {
-            if (book.getBookName() == bookName && user.getNoOfBooks() < 2) {
+            if (book.getBookName() == bookName && user.getNoOfBooks() <= 2) {
+
                 borrowedBooks.put(user.getUsername(), bookName);
-                // increment the number of books borrowed
+
                 user.setNoOfBooks(user.getNoOfBooks() + 1);
+                book.setNoOfCopies(book.getNoOfCopies() - 1);
+
             } else {
                 System.out.println("Cannot Borrow book");
             }
@@ -117,10 +121,8 @@ class LibrarySystem {
         String bookName;
         int choice;
 
-        library.addBook(new Book("Top Gear", "BBC"));
-        library.addBook(new Book("Harry Potter", "JK Rowling"));
-
-        // library.viewBooks();
+        library.addBook(new Book("Top Gear", "BBC", 3));
+        library.addBook(new Book("Harry Potter", "JK Rowling", 4));
 
         User user_1 = new User("Aditya");
 
