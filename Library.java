@@ -3,104 +3,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-class User {
-    private String username;
-    private int noOfBooks;
-
-    List<Book> borrowedBooks = new ArrayList<>();
-
-    public User(String username) {
-        this.username = username;
-        this.noOfBooks = 0;
-
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public int getNoOfBooks() {
-        return noOfBooks;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setNoOfBooks(int noOfBooks) {
-        this.noOfBooks = noOfBooks;
-    }
-
-    boolean canBorrow() {
-        if (borrowedBooks.size() >= 2) {
-            return false;
-        }
-
-        return true;
-    }
-
-    boolean borrowBook(Library library, String bookname) {
-        Book book = library.issueBook(username, bookname);
-
-        if (book != null) {
-            borrowedBooks.add(book);
-            return true;
-        }
-
-        return false;
-    }
-
-    List<Book> getUserBooks() {
-        return borrowedBooks;
-    }
-
-}
-
-class Book {
-    private String bookName;
-    private String authorName;
-    private int noOfCopies;
-
-    public Book(String bookName, String authorName, int noOfCopies) {
-        this.bookName = bookName;
-        this.authorName = authorName;
-        this.noOfCopies = noOfCopies;
-    }
-
-    public String getBookName() {
-        return bookName;
-    }
-
-    public String getAuthorName() {
-        return authorName;
-    }
-
-    public int getNoOfCopies() {
-        return noOfCopies;
-    }
-
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
-    }
-
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
-    }
-
-    public void setNoOfCopies(int noOfCopies) {
-        this.noOfCopies = noOfCopies;
-    }
-
-    boolean isBookAvailable() {
-        if (this.getNoOfCopies() == 0) {
-            return false;
-        }
-
-        return true;
-    }
-
-}
-
 class Library {
 
     List<Book> books = new ArrayList<>();
@@ -114,15 +16,13 @@ class Library {
         users.add(user);
     }
 
-    void viewBooks() {
+    List<Book> getBooks() {
 
         if (books.isEmpty()) {
             System.out.println("Library is Empty");
         }
 
-        for (Book book : books) {
-            System.out.println(book.getBookName() + " - " + book.getAuthorName());
-        }
+        return books;
     }
 
     Book getBook(String bookName) {
@@ -200,7 +100,7 @@ class LibrarySystem {
 
             switch (choice) {
                 case 1:
-                    library.viewBooks();
+                    System.out.println(library.getBooks());
                     break;
 
                 case 2:
