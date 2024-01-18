@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.List;
 import java.util.Scanner;
 
 import model.User;
@@ -48,8 +47,4 @@ public class LibraryController {
 
         return null;
     }
-
-
-
-
 }

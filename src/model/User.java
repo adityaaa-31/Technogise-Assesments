@@ -6,13 +6,13 @@ import java.util.UUID;
 
 public class User {
     private String username;
-    private UUID userId;
+    private UUID id;
 
     public List<Book> borrowedBooks = new ArrayList<>();
 
     public User(String username) {
         this.username = username;
-        this.userId = UUID.randomUUID();
+        this.id = UUID.randomUUID();
     }
 
     public String getUsername() {
@@ -20,7 +20,7 @@ public class User {
     }
 
     public UUID getUserId() {
-        return userId;
+        return id;
     }
 
     public void setUsername(String username) {

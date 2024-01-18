@@ -5,12 +5,12 @@ import java.util.UUID;
 public class Book {
     private String bookName;
     private String authorName;
-    private UUID bookId;
+    private UUID id;
 
-    public Book(String bookName, String authorName, int noOfCopies) {
+    public Book(String bookName, String authorName) {
         this.bookName = bookName;
         this.authorName = authorName;
-        this.bookId = UUID.randomUUID();
+        this.id = UUID.randomUUID();
     }
 
     public String getBookName() {
@@ -22,7 +22,7 @@ public class Book {
     }
 
     public UUID getBookId() {
-        return bookId;
+        return id;
     }
 
     public void setBookName(String bookName) {
@@ -32,5 +32,4 @@ public class Book {
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
     }
-
 }
