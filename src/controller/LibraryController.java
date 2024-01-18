@@ -55,15 +55,5 @@ public class LibraryController {
         username = scanner.nextLine();
     }
 
-    public void showUserBooks() {
-        getUserInfo();
-        for (User user : library.users) {
-            if (user.getUsername().equals(username)) {
-                List<Book> books = userController.getUserBooks();
-                LibraryView.showUserBooks(books);
-            }
-
-        }
-    }
 
 }
