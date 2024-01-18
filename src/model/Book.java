@@ -3,12 +3,10 @@ package model;
 public class Book {
     private String bookName;
     private String authorName;
-    private int noOfCopies;
 
     public Book(String bookName, String authorName, int noOfCopies) {
         this.bookName = bookName;
         this.authorName = authorName;
-        this.noOfCopies = noOfCopies;
     }
 
     public String getBookName() {
@@ -19,9 +17,6 @@ public class Book {
         return authorName;
     }
 
-    public int getNoOfCopies() {
-        return noOfCopies;
-    }
 
     public void setBookName(String bookName) {
         this.bookName = bookName;
@@ -29,10 +24,6 @@ public class Book {
 
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
-    }
-
-    public void setNoOfCopies(int noOfCopies) {
-        this.noOfCopies = noOfCopies;
     }
 
 }
