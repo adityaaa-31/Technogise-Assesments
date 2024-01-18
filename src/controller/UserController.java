@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.List;
+import java.util.Scanner;
 
 import model.Book;
 import model.Library;
@@ -8,9 +9,9 @@ import model.User;
 
 public class UserController {
     User user;
-    public UserController(User user) {
-        this.user = user;
-    }
+    Scanner scanner = new Scanner(System.in);
+    String bookname;
+    String username;
 
     boolean canBorrow() {
         if (user.borrowedBooks.size() >= 2) {
@@ -20,13 +21,27 @@ public class UserController {
         return true;
     }
 
-    public boolean borrowBook(Library library, String bookname) {
-        Book book = library.issueBook(user.getUsername(), bookname);
+    void getBorrowData() {
+        System.out.println("Enter the book you want to borrow");
+        bookname = scanner.nextLine();
 
-        if (book != null) {
-            user.borrowedBooks.add(book);
-            return true;
-        }
+        System.out.println("Enter your username");
+        username = scanner.nextLine();
+
+    }
+
+    public boolean borrowBook(Library library) {
+
+        getBorrowData();
+        // Book book = libraryController.issueBook(username, bookname);
+
+        // if (book != null) {
+        //     user.borrowedBooks.add(book);
+        //     return true;
+        // }
+
+        System.out.println(username);
+        System.out.println(bookname);
 
         return false;
     }

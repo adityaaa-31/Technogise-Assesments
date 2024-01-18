@@ -2,19 +2,18 @@ package controller;
 
 import java.util.List;
 import java.util.Scanner;
+
 import model.User;
 import model.Book;
 import model.Library;
 
-class LibraryController {
+public class LibraryController {
     UserController userController;
     BookController bookController;
-    Library library;
+    public Library library = new Library();
+    Scanner scanner = new Scanner(System.in);
 
-    
-    public LibraryController(Library library) {
-        this.library = library;
-    }
+    String username;
 
     public void addBook(Book b) {
         library.books.add(b);
@@ -24,16 +23,19 @@ class LibraryController {
         library.users.add(user);
     }
 
-    public List<Book> getBooks() {
+    public void getAllBooks() {
 
         if (library.books.isEmpty()) {
             System.out.println("Library is Empty");
         }
 
-        return library.books;
+        for (Book book : library.books) {
+            System.out.println(book.getBookName());
+        }
+
     }
 
-    public Book getBook(String bookName) {
+    public Book getBookByName(String bookName) {
 
         for (Book book : library.books) {
             if (book.getBookName().equals(bookName)) {
@@ -43,20 +45,9 @@ class LibraryController {
         return null;
     }
 
-    public User getUser(String userName) {
+    public Book issueBook(String username, String bookname) {
 
-        for (User user : library.users) {
-            if (user.getUsername().equals(userName)) {
-                return user;
-            }
-        }
-        return null;
-    }
-
-    public Book issueBook(User user, Book book) {
-
-        if (book == null || user == null)
-            return null;
+        Book book = getBookByName(bookname);
 
         if (userController.canBorrow() && bookController.isBookAvailable(book)) {
             return book;
@@ -65,7 +56,14 @@ class LibraryController {
         return null;
     }
 
-    public void showUserBooks(String username) {
+    public void getUserInfo() {
+        System.out.println("Enter your name");
+        scanner.nextLine();
+        username = scanner.nextLine();
+    }
+
+    public void showUserBooks() {
+        getUserInfo();
         for (User user : library.users) {
             if (user.getUsername().equals(username)) {
                 List<Book> books = userController.getUserBooks();

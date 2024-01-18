@@ -1,25 +1,18 @@
 import java.util.Scanner;
 
 import model.Book;
-import model.Library;
-import model.User;
+import controller.*;
 
 public class LibraryApp {
+
     public static void main(String[] args) {
-        // Initialise the library
-        Library library = new Library();
+        LibraryController libraryController = new LibraryController();
+        UserController userController = new UserController();
 
         Scanner sc = new Scanner(System.in);
-
-        User user;
-        String bookName;
-        String username;
         int choice;
 
-        library.addBook(new Book("Top Gear", "BBC", 3));
-        library.addBook(new Book("Harry Potter", "JK Rowling", 4));
-
-        library.addUser(new User("Aditya"));
+        libraryController.addBook(new Book("Top Gear", "BBC", 4));
 
         System.out.println("Menu:-");
         System.out.println("1. View available books");
@@ -34,34 +27,16 @@ public class LibraryApp {
             switch (choice) {
                 case 1:
 
-                    for (Book book : library.getBooks()) {
-                        System.out.println(book.getBookName());
-                    }
+                    libraryController.getAllBooks();
                     break;
 
                 case 2:
-                    System.out.println("Enter the book you want to borrow");
-                    sc.nextLine();
-                    bookName = sc.nextLine();
-
-                    System.out.println("Enter your username");
-                    username = sc.nextLine();
-
-                    user = library.getUser(username);
-
-                    if (user.borrowBook(library, bookName)) {
-                        System.out.println("Book Borrowed");
-                    } else {
-                        System.out.println("Cannot Borrow Book");
-                    }
-
+                    userController.borrowBook(libraryController.library);
                     break;
 
                 case 3:
-                    System.out.println("Enter your name");
-                    sc.nextLine();
-                    username = sc.nextLine();
-                    library.showUserBooks(username);
+                    libraryController.showUserBooks();
+                    break;
 
                 default:
                     break;

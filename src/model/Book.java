@@ -35,12 +35,4 @@ public class Book {
         this.noOfCopies = noOfCopies;
     }
 
-    boolean isBookAvailable() {
-        if (this.getNoOfCopies() == 0) {
-            return false;
-        }
-
-        return true;
-    }
-
 }
