@@ -18,4 +18,11 @@ public class LibraryView {
             System.out.println(book.getBookName());
         }
     }
+
+    public static void showMenu() {
+        System.out.println("Menu:-");
+        System.out.println("1. View available books");
+        System.out.println("2. Borrow a book");
+        System.out.println("3. View Your Books");
+    }
 }

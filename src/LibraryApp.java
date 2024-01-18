@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import model.Book;
+import view.LibraryView;
 import controller.*;
 
 public class LibraryApp {
@@ -14,19 +15,14 @@ public class LibraryApp {
 
         libraryController.addBook(new Book("Top Gear", "BBC", 4));
 
-        System.out.println("Menu:-");
-        System.out.println("1. View available books");
-        System.out.println("2. Borrow a book");
-        System.out.println("3. View Your Books");
-
         do {
-            System.out.println("Enter a choice");
+            LibraryView.showMenu();
 
+            System.out.println("Enter a choice");
             choice = sc.nextInt();
 
             switch (choice) {
                 case 1:
-
                     libraryController.getAllBooks();
                     break;
 
