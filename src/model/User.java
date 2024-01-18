@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class User {
     private String username;
-    UUID userId;
+    private UUID userId;
 
     public List<Book> borrowedBooks = new ArrayList<>();
 
