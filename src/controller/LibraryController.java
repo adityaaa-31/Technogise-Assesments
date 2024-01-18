@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import model.User;
+import view.LibraryView;
 import model.Book;
 import model.Library;
 
@@ -24,15 +25,7 @@ public class LibraryController {
     }
 
     public void getAllBooks() {
-
-        if (library.books.isEmpty()) {
-            System.out.println("Library is Empty");
-        }
-
-        for (Book book : library.books) {
-            System.out.println(book.getBookName());
-        }
-
+        LibraryView.showAllBooks(library);
     }
 
     public Book getBookByName(String bookName) {
@@ -49,7 +42,7 @@ public class LibraryController {
 
         Book book = getBookByName(bookname);
 
-        if (userController.canBorrow() && bookController.isBookAvailable(book)) {
+        if (userController.canBorrow() && isBookAvailable(book)) {
             return book;
         }
 
@@ -62,14 +55,20 @@ public class LibraryController {
         username = scanner.nextLine();
     }
 
+    boolean isBookAvailable(Book book) {
+        if (book.getNoOfCopies() == 0) {
+            return false;
+        }
+
+        return true;
+    }
+
     public void showUserBooks() {
         getUserInfo();
         for (User user : library.users) {
             if (user.getUsername().equals(username)) {
                 List<Book> books = userController.getUserBooks();
-                for (int i = 0; i < books.size(); i++) {
-                    System.out.println("Books Borrowed " + books.get(i).getBookName());
-                }
+                LibraryView.showUserBooks(books);
             }
 
         }

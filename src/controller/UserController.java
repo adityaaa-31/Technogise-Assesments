@@ -9,9 +9,7 @@ import model.User;
 
 public class UserController {
     User user;
-    Scanner scanner = new Scanner(System.in);
-    String bookname;
-    String username;
+    static Scanner scanner = new Scanner(System.in);
 
     boolean canBorrow() {
         if (user.borrowedBooks.size() >= 2) {
@@ -21,27 +19,32 @@ public class UserController {
         return true;
     }
 
-    void getBorrowData() {
-        System.out.println("Enter the book you want to borrow");
-        bookname = scanner.nextLine();
-
+    public String getUsername() {
         System.out.println("Enter your username");
-        username = scanner.nextLine();
+        String username = scanner.nextLine();
+        return username;
+    }
 
+    public String getBookName() {
+        System.out.println("Enter the book you want to borrow");
+        // String bookname = scanner.nextLine();
+
+        // return bookname;
+        return scanner.nextLine();
     }
 
     public boolean borrowBook(Library library) {
 
-        getBorrowData();
+        
         // Book book = libraryController.issueBook(username, bookname);
 
         // if (book != null) {
-        //     user.borrowedBooks.add(book);
-        //     return true;
+        // user.borrowedBooks.add(book);
+        // return true;
         // }
 
-        System.out.println(username);
-        System.out.println(bookname);
+        System.out.println(getUsername());
+        System.out.println(getBookName());
 
         return false;
     }
