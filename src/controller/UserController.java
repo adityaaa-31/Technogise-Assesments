@@ -11,7 +11,7 @@ public class UserController {
     User user;
     static Scanner scanner = new Scanner(System.in);
 
-    boolean canBorrow() {
+    public boolean canBorrow() {
         if (user.borrowedBooks.size() >= 2) {
             return false;
         }
@@ -27,24 +27,17 @@ public class UserController {
 
     public String getBookName() {
         System.out.println("Enter the book you want to borrow");
-        // String bookname = scanner.nextLine();
-
-        // return bookname;
-        return scanner.nextLine();
+        String bookname =  scanner.nextLine();
+        return bookname;
     }
 
-    public boolean borrowBook(Library library) {
+    public boolean borrowBook(Library library, LibraryController libraryController) {
+        Book book = libraryController.issueBook(getUsername(), getBookName());
 
-        
-        // Book book = libraryController.issueBook(username, bookname);
-
-        // if (book != null) {
-        // user.borrowedBooks.add(book);
-        // return true;
-        // }
-
-        System.out.println(getUsername());
-        System.out.println(getBookName());
+        if (book != null) {
+            user.borrowedBooks.add(book);
+            return true;
+        }
 
         return false;
     }

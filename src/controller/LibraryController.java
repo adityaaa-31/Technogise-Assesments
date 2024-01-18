@@ -49,11 +49,7 @@ public class LibraryController {
         return null;
     }
 
-    public void getUserInfo() {
-        System.out.println("Enter your name");
-        scanner.nextLine();
-        username = scanner.nextLine();
-    }
+
 
 
 }

@@ -27,11 +27,11 @@ public class LibraryApp {
                     break;
 
                 case 2:
-                    userController.borrowBook(libraryController.library);
+                    userController.borrowBook(libraryController.library, libraryController);
                     break;
 
                 case 3:
-                    libraryController.showUserBooks();
+                    LibraryView.showUserBooks(userController.getUserBooks());
                     break;
 
                 default:
