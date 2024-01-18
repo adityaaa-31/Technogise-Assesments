@@ -12,11 +12,7 @@ public class UserController {
     static Scanner scanner = new Scanner(System.in);
 
     public boolean canBorrow() {
-        if (user.borrowedBooks.size() >= 2) {
-            return false;
-        }
-
-        return true;
+        return user.borrowedBooks.size() <= 2;
     }
 
     public String getUsername() {
@@ -27,7 +23,7 @@ public class UserController {
 
     public String getBookName() {
         System.out.println("Enter the book you want to borrow");
-        String bookname =  scanner.nextLine();
+        String bookname = scanner.nextLine();
         return bookname;
     }
 
