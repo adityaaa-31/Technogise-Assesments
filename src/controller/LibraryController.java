@@ -42,7 +42,7 @@ public class LibraryController {
 
         Book book = getBookByName(bookname);
 
-        if (userController.canBorrow() && isBookAvailable(book)) {
+        if (userController.canBorrow()) {
             return book;
         }
 
@@ -53,14 +53,6 @@ public class LibraryController {
         System.out.println("Enter your name");
         scanner.nextLine();
         username = scanner.nextLine();
-    }
-
-    boolean isBookAvailable(Book book) {
-        if (book.getNoOfCopies() == 0) {
-            return false;
-        }
-
-        return true;
     }
 
     public void showUserBooks() {
