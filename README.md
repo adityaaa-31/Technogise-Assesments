@@ -1,3 +1,3 @@
 ## Library Management Assessment
-- This branch is to implement MVC Architecuture for Library Management. 
+- This branch is used to implement MVC Architecuture for Library Management. 
 
