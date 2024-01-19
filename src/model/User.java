@@ -10,9 +10,9 @@ public class User {
 
     public List<Book> borrowedBooks = new ArrayList<>();
 
-    public User(String username) {
+    public User(String username, UUID id) {
         this.username = username;
-        this.id = UUID.randomUUID();
+        this.id = null;
     }
 
     public String getUsername() {

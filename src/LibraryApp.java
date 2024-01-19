@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import javax.xml.crypto.Data;
+
 import model.Book;
 import view.LibraryView;
 import controller.*;
@@ -9,6 +11,10 @@ public class LibraryApp {
     public static void main(String[] args) {
         LibraryController libraryController = new LibraryController();
         UserController userController = new UserController();
+
+        DatabaseRepository databaseRepository = new DatabaseRepository();
+
+        databaseRepository.makeConnection();
 
         Scanner sc = new Scanner(System.in);
         int choice;
