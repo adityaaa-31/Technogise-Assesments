@@ -30,5 +30,4 @@ public class User {
     public List<Book> getBorrowedBooks() {
         return borrowedBooks;
     }
-
 }

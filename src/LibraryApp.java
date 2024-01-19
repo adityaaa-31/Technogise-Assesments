@@ -13,7 +13,7 @@ public class LibraryApp {
         Scanner sc = new Scanner(System.in);
         int choice;
 
-        libraryController.addBook(new Book("Top Gear", "BBC", 4));
+        libraryController.addBook(new Book("Top Gear", "BBC"));
 
         do {
             LibraryView.showMenu();
