@@ -1,21 +1,16 @@
+import java.sql.SQLException;
 import java.util.Scanner;
 
-import javax.xml.crypto.Data;
-
+import controller.LibraryController;
+import controller.UserController;
 import model.Book;
 import view.LibraryView;
-import controller.*;
 
 public class LibraryApp {
 
     public static void main(String[] args) {
         LibraryController libraryController = new LibraryController();
         UserController userController = new UserController();
-
-        DatabaseRepository databaseRepository = new DatabaseRepository();
-
-        databaseRepository.makeConnection();
-
         Scanner sc = new Scanner(System.in);
         int choice;
 
@@ -33,17 +28,20 @@ public class LibraryApp {
                     break;
 
                 case 2:
-                    userController.borrowBook(libraryController.library, libraryController);
+                    userController.borrowBook("username", "bookname", libraryController.library, libraryController);
                     break;
 
                 case 3:
                     LibraryView.showUserBooks(userController.getUserBooks());
                     break;
 
+                case 4:
+                    String username = LibraryView.getUsername();
+                    userController.createUser(username);
                 default:
                     break;
             }
-        } while (choice != 4);
+        } while (choice != 5);
 
         sc.close();
 
