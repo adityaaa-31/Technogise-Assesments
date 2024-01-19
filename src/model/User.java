@@ -10,11 +10,6 @@ public class User {
 
     public List<Book> borrowedBooks = new ArrayList<>();
 
-    public User(String username, UUID id) {
-        this.username = username;
-        this.id = null;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -29,5 +24,9 @@ public class User {
 
     public List<Book> getBorrowedBooks() {
         return borrowedBooks;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 }
