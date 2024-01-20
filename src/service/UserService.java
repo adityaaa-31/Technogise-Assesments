@@ -1,7 +1,13 @@
 package service;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import controller.LibraryController;
+import model.Book;
+import model.Library;
 import model.User;
 import repository.UserRepository;
-
 
 public class UserService {
 
@@ -12,4 +18,30 @@ public class UserService {
             e.printStackTrace();
         }
     }
+
+    public static List<Book> viewBooks() throws SQLException {
+        List<Book> books = LibraryService.getAllBooks();
+        return books;
+    }
+
+    // public boolean canBorrow() {
+    //     return user.borrowedBooks.size() <= 2;
+    // }
+
+    // public boolean borrowBook(String username, String bookname, Library library, LibraryController libraryController) {
+    //     Book book = libraryController.issueBook(username, bookname);
+
+    //     if (book != null) {
+    //         user.borrowedBooks.add(book);
+    //         return true;
+    //     }
+
+    //     return false;
+    // }
+
+    // public List<Book> getUserBooks() {
+    //     return user.borrowedBooks;
+    // }
+
+
 }

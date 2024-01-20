@@ -14,7 +14,7 @@ public class LibraryApp {
         Scanner sc = new Scanner(System.in);
         int choice;
 
-        libraryController.addBook(new Book("Top Gear", "BBC"));
+        // libraryController.addBook(new Book("Top Gear", "BBC"));
 
         do {
             LibraryView.showMenu();
@@ -24,15 +24,19 @@ public class LibraryApp {
 
             switch (choice) {
                 case 1:
-                    libraryController.getAllBooks();
+                    try {
+                        UserController.viewBooks();
+                    } catch (SQLException e) {
+                        System.out.println("Cannot view books");
+                    }
                     break;
 
                 case 2:
-                    userController.borrowBook("username", "bookname", libraryController.library, libraryController);
+                    // userController.borrowBook("username", "bookname", libraryController.library, libraryController);
                     break;
 
                 case 3:
-                    LibraryView.showUserBooks(userController.getUserBooks());
+                    // LibraryView.showUserBooks(userController.getUserBooks());
                     break;
 
                 case 4:

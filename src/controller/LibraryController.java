@@ -23,28 +23,8 @@ public class LibraryController {
         library.users.add(user);
     }
 
-    public void getAllBooks() {
-        LibraryView.showAllBooks(library);
-    }
-
-    public Book getBookByName(String bookName) {
-
-        for (Book book : library.books) {
-            if (book.getBookName().equals(bookName)) {
-                return book;
-            }
-        }
-        return null;
-    }
-
-    public Book issueBook(String username, String bookname) {
-
-        Book book = getBookByName(bookname);
-
-        if (userController.canBorrow()) {
-            return book;
-        }
-
-        return null;
-    }
+    // public void getAllBooks() {
+    //     LibraryView.showAllBooks(library);
+    // }
+ 
 }

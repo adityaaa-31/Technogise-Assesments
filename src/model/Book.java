@@ -7,11 +7,6 @@ public class Book {
     private String authorName;
     private UUID id;
 
-    public Book(String bookName, String authorName) {
-        this.bookName = bookName;
-        this.authorName = authorName;
-        this.id = UUID.randomUUID();
-    }
 
     public String getBookName() {
         return bookName;
@@ -31,5 +26,9 @@ public class Book {
 
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 }

@@ -28,8 +28,9 @@ public class LibraryView {
         }
     }
 
-    public static void showAllBooks(Library library) {
-        for (Book book : library.books) {
+    public static void showAllBooks(List<Book> books) {
+        for (Book book : books) {
+            System.out.println("Books present in the library");
             System.out.println(book.getBookName());
         }
     }
