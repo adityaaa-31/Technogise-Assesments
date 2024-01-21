@@ -16,8 +16,14 @@ public class LibraryView {
         return username;
     }
 
+    public static String getAuthorname() {
+        System.out.println("Enter the author name");
+        String username = scanner.nextLine();
+        return username;
+    }
+
     public static String getBookName() {
-        System.out.println("Enter the book you want to borrow");
+        System.out.println("Enter a book name");
         String bookname = scanner.nextLine();
         return bookname;
     }
@@ -29,8 +35,9 @@ public class LibraryView {
     }
 
     public static void showAllBooks(List<Book> books) {
+        System.out.println("Books present in the library");
+
         for (Book book : books) {
-            System.out.println("Books present in the library");
             System.out.println(book.getBookName());
         }
     }
@@ -41,6 +48,7 @@ public class LibraryView {
         System.out.println("2. Borrow a book");
         System.out.println("3. View Your Books");
         System.out.println("4. Add User");
+        System.out.println("4. Add Book");
 
     }
 }

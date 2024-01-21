@@ -1,6 +1,7 @@
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import controller.BookController;
 import controller.LibraryController;
 import controller.UserController;
 import model.Book;
@@ -42,10 +43,20 @@ public class LibraryApp {
                 case 4:
                     String username = LibraryView.getUsername();
                     userController.createUser(username);
+
+                case 5: 
+                    String bookname = LibraryView.getBookName();
+                    String authorname = LibraryView.getAuthorname();
+
+                    try {
+                        BookController.saveBook(bookname, authorname);
+                    } catch (SQLException e) {
+                        System.out.println("Cannot save book");
+                    }
                 default:
                     break;
             }
-        } while (choice != 5);
+        } while (choice != 6);
 
         sc.close();
 
