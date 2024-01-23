@@ -4,35 +4,34 @@ import java.sql.SQLException;
 import java.util.List;
 
 import model.Book;
+import repository.BookRepository;
 import repository.LibraryRepository;
 
 public class LibraryService {
 
     public static List<Book> getAllBooks() throws SQLException {
-
         List<Book> books = LibraryRepository.getAllBooks();
         return books;
-        
     }
 
-    // public Book getBookByName(String bookName) {
+    public Book getBookByName(String bookName) throws SQLException {
+        Book book = LibraryRepository.getBookByName(bookName);
+        return book;
+    }
 
-    //     for (Book book : library.books) {
-    //         if (book.getBookName().equals(bookName)) {
-    //             return book;
-    //         }
-    //     }
-    //     return null;
-    // }
+    public static Book saveBook(Book book) throws SQLException {
+        return LibraryRepository.saveBook(book);
+    }
 
-    // public Book issueBook(String username, String bookname) {
+    public Book issueBook(String username, String bookname) {
 
-    //     Book book = getBookByName(bookname);
+        try {
+            Book book = getBookByName(bookname);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
-    //     if (userController.canBorrow()) {
-    //         return book;
-    //     }
-
-    //     return null;
-    // }
+        return null;
+    }
 }

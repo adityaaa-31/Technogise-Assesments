@@ -2,32 +2,44 @@ package controller;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Scanner;
-import java.util.UUID;
 
 import model.Book;
-import model.Library;
 import model.User;
 import service.*;
 import view.LibraryView;
-import model.*;
 
 public class UserController {
 
-    User user;
+    private User user = new User();
 
-    public User createUser(String usernname) {
-        User user = new User();
+    UserService userService = new UserService();
+
+    public User createUser(String usernname, String password) {
         user.setUsername(usernname);
+        user.setPassword(password);
 
         UserService.createUser(user);
         return user;
     }
+
+    public User loginUser(String usernname, String password) throws SQLException {
+        user.setUsername(usernname);
+        user.setPassword(password);
+
+        UserService.loginUser(user);
+        return user;
+    }
+
+
 
     public static void viewBooks() throws SQLException {
 
         List<Book> books = UserService.viewBooks();
         LibraryView.showAllBooks(books);
 
+    }
+
+    public Book borrowBook(String bookname) {
+        return null;
     }
 }

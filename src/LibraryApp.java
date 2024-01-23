@@ -5,6 +5,8 @@ import controller.BookController;
 import controller.LibraryController;
 import controller.UserController;
 import model.Book;
+import model.User;
+import repository.UserRepository;
 import view.LibraryView;
 
 public class LibraryApp {
@@ -14,8 +16,6 @@ public class LibraryApp {
         UserController userController = new UserController();
         Scanner sc = new Scanner(System.in);
         int choice;
-
-        // libraryController.addBook(new Book("Top Gear", "BBC"));
 
         do {
             LibraryView.showMenu();
@@ -33,7 +33,8 @@ public class LibraryApp {
                     break;
 
                 case 2:
-                    // userController.borrowBook("username", "bookname", libraryController.library, libraryController);
+                    // userController.borrowBook("username", "bookname", libraryController.library,
+                    // libraryController);
                     break;
 
                 case 3:
@@ -41,22 +42,51 @@ public class LibraryApp {
                     break;
 
                 case 4:
-                    String username = LibraryView.getUsername();
-                    userController.createUser(username);
+                    System.out.println("Enter Username");
+                    sc.nextLine();
+                    String username = sc.nextLine();
 
-                case 5: 
-                    String bookname = LibraryView.getBookName();
-                    String authorname = LibraryView.getAuthorname();
+                    System.out.println("Enter password");
+                    String password = sc.nextLine();
+                    User user = userController.createUser(username, password);
+                    System.out.println("User " + user.getUsername() + " Created");
+
+                    break;
+
+                case 5:
+                    System.out.println("Enter Username");
+                    sc.nextLine();
+                    String uname = sc.nextLine();
+
+                    System.out.println("Enter password");
+                    String pwd = sc.nextLine();
+                   
+                    try {
+                        userController.loginUser(uname, pwd);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case 6:
+                    System.out.println("Enter book name");
+                    sc.nextLine();
+                    String bookname = sc.nextLine();
+                    System.out.println("Enter author name");
+                    String authorname = sc.nextLine();
 
                     try {
-                        BookController.saveBook(bookname, authorname);
+                        Book book = LibraryController.saveBook(bookname, authorname);
+                        System.out.println(book);
                     } catch (SQLException e) {
+                        e.printStackTrace();
                         System.out.println("Cannot save book");
                     }
+
                 default:
                     break;
             }
-        } while (choice != 6);
+        } while (choice != 7);
 
         sc.close();
 

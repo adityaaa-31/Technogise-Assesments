@@ -19,29 +19,26 @@ public class UserService {
         }
     }
 
+    public static void loginUser(User user) throws SQLException {
+        UserRepository.login(user);
+    }
+
     public static List<Book> viewBooks() throws SQLException {
         List<Book> books = LibraryService.getAllBooks();
         return books;
     }
 
-    // public boolean canBorrow() {
-    //     return user.borrowedBooks.size() <= 2;
-    // }
+    public boolean canBorrow(User user) {
+        return user.borrowedBooks.size() <= 2;
+    }
 
-    // public boolean borrowBook(String username, String bookname, Library library, LibraryController libraryController) {
-    //     Book book = libraryController.issueBook(username, bookname);
+    public static Book borrowBook(String username, String bookname) {
 
-    //     if (book != null) {
-    //         user.borrowedBooks.add(book);
-    //         return true;
-    //     }
+        return null;
+    }
 
-    //     return false;
-    // }
-
-    // public List<Book> getUserBooks() {
-    //     return user.borrowedBooks;
-    // }
-
+    public List<Book> getUserBooks(User user) {
+        return UserRepository.getUserBooks(user);
+    }
 
 }

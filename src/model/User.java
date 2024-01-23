@@ -6,16 +6,27 @@ import java.util.UUID;
 
 public class User {
     private String username;
+    private String password;
     private UUID id;
+
 
     public List<Book> borrowedBooks = new ArrayList<>();
 
-    public String getUsername() {
-        return username;
+    
+    public String getPassword() {
+        return password;
     }
 
-    public UUID getUserId() {
+    public UUID getId() {
         return id;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public void setUsername(String username) {

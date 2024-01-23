@@ -1,30 +1,25 @@
 package controller;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import model.User;
+import service.LibraryService;
 import view.LibraryView;
 import model.Book;
 import model.Library;
 
 public class LibraryController {
-    UserController userController;
-    BookController bookController;
-    public Library library = new Library();
-    Scanner scanner = new Scanner(System.in);
 
-    String username;
+    public void getAllBooks() {
 
-    public void addBook(Book b) {
-        library.books.add(b);
     }
 
-    public void addUser(User user) {
-        library.users.add(user);
+    public static Book saveBook(String bookname, String authorname) throws SQLException {
+        Book book = new Book();
+        book.setBookName(bookname);
+        book.setAuthorName(authorname);
+        return LibraryService.saveBook(book);
     }
 
-    // public void getAllBooks() {
-    //     LibraryView.showAllBooks(library);
-    // }
- 
 }

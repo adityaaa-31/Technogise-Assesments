@@ -48,7 +48,8 @@ public class LibraryView {
         System.out.println("2. Borrow a book");
         System.out.println("3. View Your Books");
         System.out.println("4. Add User");
-        System.out.println("4. Add Book");
+        System.out.println("5. Login");
+        System.out.println("6. Add Book");
 
     }
 }

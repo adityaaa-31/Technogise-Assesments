@@ -6,10 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import model.Book;
-
-import javax.naming.spi.DirStateFactory.Result;
+import model.User;
 
 public class LibraryRepository {
 
@@ -38,7 +38,54 @@ public class LibraryRepository {
             }
 
         }
-
         return books;
+    }
+
+    public static Book getBookByName(String bookname) throws SQLException {
+
+        connection = DatabaseConfig.makeConnection();
+        Book book = new Book();
+
+        if (connection != null) {
+            String query = "SELECT * from book WHERE bookaname = ?";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                book.setBookName(resultSet.getString("bookname"));
+                book.setAuthorName(resultSet.getString("authorname"));
+
+            }
+        }
+        return book;
+    }
+
+    public static Book saveBook(Book book) throws SQLException {
+
+        connection = DatabaseConfig.makeConnection();
+
+        if (connection != null) {
+            String query = "INSERT INTO books (bookname, authorname, id) VALUES (?,?,?)";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, book.getBookName());
+            preparedStatement.setString(2, book.getAuthorName());
+            preparedStatement.setString(3, UUID.randomUUID().toString());
+            preparedStatement.executeUpdate();
+
+        }
+        return book;
+    }
+
+    public static Book issueBook(User user, Book book) {
+        connection = DatabaseConfig.makeConnection();
+
+        if (connection != null) {
+
+        }
+        return book;
     }
 }
