@@ -10,6 +10,7 @@ public class DatabaseConfig {
     private static final String PASSWORD = "mysqlroot";
 
     public static Connection makeConnection() {
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
