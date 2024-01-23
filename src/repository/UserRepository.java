@@ -52,8 +52,9 @@ public class UserRepository {
 
             if (resultSet.next()) {
                  token = String.valueOf(
-                        Jwts.builder().
-                                signWith(SignatureAlgorithm.RS256, secretKey)
+                        Jwts.builder()
+                                .setHeaderParam("typ","JWT")
+                                .signWith(SignatureAlgorithm.RS256, secretKey)
                                 .setExpiration(new Date(expirationTimeMillis))
                                 .setSubject(user.getUsername()).compact());
 
