@@ -22,12 +22,12 @@ public class UserController {
         return user;
     }
 
-    public User loginUser(String usernname, String password) throws SQLException {
+    public String loginUser(String usernname, String password) throws SQLException {
         user.setUsername(usernname);
         user.setPassword(password);
 
-        UserService.loginUser(user);
-        return user;
+        String userToken = UserService.loginUser(user);
+        return userToken;
     }
 
 

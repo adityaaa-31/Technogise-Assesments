@@ -19,8 +19,8 @@ public class UserService {
         }
     }
 
-    public static void loginUser(User user) throws SQLException {
-        UserRepository.login(user);
+    public static String loginUser(User user) throws SQLException {
+       return UserRepository.login(user);
     }
 
     public static List<Book> viewBooks() throws SQLException {
